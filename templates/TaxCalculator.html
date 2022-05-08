@@ -95,38 +95,39 @@
     </div>
     <br>
 
-    <form>
+    <form action="/calculator/incometax" method="post">
+        {% csrf_token %}
     <div class="grid-upper box1">
         <div>
             <h2> Taxable Income </h2>
             <div class="text-box">
                 <h3> Monthly Salary</h3>
-                <input type="text">
+                <input type="number" min="0" name="monthlySalary" value="{{monthlySalary}}">
             </div>
 
             <div class="text-box">
                 <h3> Housing Rent Allowance</h3>
-                <input type="text">
+                <input type="number" min="0" name="housingRentAllowance" value="{{housingRentAllowance}}">
             </div>
 
             <div class="text-box">
                 <h3> Cost of living Allowance</h3>
-                <input type="text">
+                <input type="number" min="0" name="costOfLivingAllowance" value="{{costOfLivingAllowance}}">
             </div>
 
             <div class="text-box">
-                <h3> Transportation Alloance </h3>
-                <input type="text">
+                <h3> Transportation Allowance </h3>
+                <input type="number" min="0" name="transportationAllowance" value="{{transportationAllowance}}">
             </div>
 
             <div class="text-box">
                 <h3> Bonus </h3>
-                <input type="text">
+                <input type="number" min="0" name="bonus" value="{{bonus}}">
             </div>
 
             <div class="text-box">
                 <h3> Overtime Payment</h3>
-                <input type="text">
+                <input type="number" min="0" name="overTimePayment" value="{{overTimePayment}}">
             </div>
         </div>
 
@@ -134,11 +135,11 @@
             <h2> Deductibles </h2>
             <div class="text-box">
                 <h3> Medical Insurance</h3>
-                <input type="text">
+                <input type="number" min="0" name="medicalInsurance" value="{{medicalInsurance}}">
             </div>
             <div class="text-box">
                 <h3> Life Insurance</h3>
-                <input type="text">
+                <input type="number" min="0" name="lifeInsurance" value="{{lifeInsurance}}">
             </div>
         </div>
 
@@ -151,7 +152,7 @@
     <div class="grid-lower">
         <div class="text-box box1">
             <h3> Income Tax: </h3>
-            <input type="text">
+            <input type="text" value="{{tax}}" disabled>
         </div>
     </div>
     </form>
