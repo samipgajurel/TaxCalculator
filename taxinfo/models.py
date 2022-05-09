@@ -1,17 +1,5 @@
 from django.db import models
 
-
-# Create your models here.
-# class TaxInfo(models.Model):
-#     id = models.IntegerField(primary_key=True)
-#     maritalStatus = models.CharField(max_length=2)
-#     taxableIncome = models.IntegerField()
-#     taxRate = models.IntegerField()
-#
-#     class Meta:
-#         managed = False
-#         db_table = "taxinfo"
-#
 class Taxinfo(models.Model):
     id = models.IntegerField(primary_key=True)
     maritalStatus = models.CharField(db_column='maritalStatus', max_length=1, blank=True, null=True)  # Field name made lowercase.
@@ -22,4 +10,23 @@ class Taxinfo(models.Model):
         managed = False
         db_table = 'taxinfo'
 
+    @property
+    def taxableIncomeStr(self):
+        return Taxinfo.commaFormatted(self.taxableIncome)
+
+    @staticmethod
+    def commaFormatted(num):
+        if num < 1000:
+            return str(num)
+        result = ""
+        rem = num % 1000
+        result = str(rem).zfill(3) + result
+        num = num // 1000
+        result = f",{result}"
+        while num > 99:
+            rem = num % 100
+            result = "," + str(rem).zfill(2) + result
+            num = num // 100
+        result = f"{str(num)}{result}"
+        return result
 

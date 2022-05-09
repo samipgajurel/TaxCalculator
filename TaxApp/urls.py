@@ -23,4 +23,7 @@ urlpatterns = [
     path('news/', include('news.urls')),
     path('calculator/', include('calculator.urls')),
     path('taxinfo/', include('taxinfo.urls')),
+    path('accounts/',include('accounts.urls')),
+    path('accounts/', include('django.contrib.auth.urls'))
+
     ]

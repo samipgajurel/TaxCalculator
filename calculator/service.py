@@ -14,8 +14,8 @@ def get_tax_info(marital_status = 'S'):
         taxAmounts.append(record.taxableIncome)
     return taxAmounts, taxRates
 
-def apply_tax_rates(amount):
-    taxAmounts, taxRates = get_tax_info()
+def apply_tax_rates(amount,marital_status = 'S'):
+    taxAmounts, taxRates = get_tax_info(marital_status)
     taxes =[]
     for i in range(len(taxAmounts)-1):
         remaining = amount - taxAmounts[i]
@@ -37,7 +37,7 @@ def apply_tax_rates(amount):
     return total_tax, taxes
 
 
-def calculate_tax(model):
+def calculate_tax(model,marital_status = 'S'):
     allIncome=(model.monthlySalary*12 +
                model.housingRentAllowance*12 +
                model.costOfLivingAllowance*12 +
@@ -49,6 +49,6 @@ def calculate_tax(model):
     print(allIncome)
     print(allDed)
     print(taxableIncome)
-    total, taxes = apply_tax_rates(taxableIncome)
+    total, taxes = apply_tax_rates(taxableIncome,marital_status)
     print(taxes)
     return total

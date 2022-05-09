@@ -98,11 +98,12 @@
     </div>
     <br>
 <div>
+
     <table border = "1" cellpadding = "5" cellspacing = "5" class="center">
+        <h3 class="text-center">Tax Information For Individuals (Unmarried)</h3>
+
         <tr>
-            <th>
-                Marital Status
-            </th>
+
             <th>
                 Taxable Income
             </th>
@@ -110,11 +111,48 @@
                 Tax Rate(%)
             </th>
         </tr>
-        {%for record in records%}
+        {%for record in records.single%}
         <tr>
-            <td> {{record.maritalStatus}} </td>
-            <td> {{record.taxableIncome}} </td>
-            <td> {{record.taxRate}} </td>
+
+            <td>
+                {%if forloop.first%}
+                First {{record.taxableIncomeStr}}
+                {%elif forloop.last%}
+                Above {{records.sum_single}}
+                {%else%}
+                Next {{record.taxableIncomeStr}}
+                {%endif%}
+            </td>
+            <td align="right"> {{record.taxRate}} </td>
+        </tr>
+        {%endfor%}
+    </table>
+    <br>
+    <table border = "1" cellpadding = "5" cellspacing = "5" class="center">
+        <h3 class="text-center">Tax Information For Married </h3>
+
+        <tr>
+
+            <th>
+                Taxable Income
+            </th>
+            <th>
+                Tax Rate(%)
+            </th>
+        </tr>
+        {%for record in records.married%}
+        <tr>
+
+            <td>
+                {%if forloop.first%}
+                First {{record.taxableIncomeStr}}
+                {%elif forloop.last%}
+                Above {{records.sum_married}}
+                {%else%}
+                Next {{record.taxableIncomeStr}}
+                {%endif%}
+            </td>
+            <td align="right"> {{record.taxRate}} </td>
         </tr>
         {%endfor%}
     </table>
