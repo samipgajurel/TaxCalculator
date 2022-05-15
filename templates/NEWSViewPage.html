@@ -7,7 +7,12 @@
     <title>Document</title>
     <style>
         .body-1{
-          background-image: url('https://d.newsweek.com/en/full/1702609/capitol-hill-riots.jpg');
+        {% if not news.picture %}
+             background-image: url('https://d.newsweek.com/en/full/1702609/capitol-hill-riots.jpg');
+            {% else %}
+              background-image: url('{{ news.picture.url }}');
+            {% endif %}
+
           background-repeat: no-repeat;
           background-size: 1000px 300px;
           background-position: center;

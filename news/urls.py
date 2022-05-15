@@ -8,6 +8,11 @@ urlpatterns = [
     path('', views.index_page, name='home'),
     path('add/', login_required(views.add_news),name='add'),
     path('view/',views.see_news,name='view'),
-    path("update/",views.update_news,name='update'),
-    path("delete/",views.delete_news,name='delete'),
+    path("update/",login_required(views.update_news),name='update'),
+    path("delete/",login_required(views.delete_news),name='delete'),
 ]
+from django.conf import settings
+from django.conf.urls.static import static
+if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL,
+                              document_root=settings.MEDIA_ROOT)

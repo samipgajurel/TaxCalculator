@@ -3,6 +3,7 @@ from news.models import News
 import datetime
 from django.core.paginator import Paginator
 from news.service import get_latest_news,get_popular_news
+from news.forms import NewsImageForm
 
 # Create your views here.
 def index_page (request):
@@ -26,12 +27,16 @@ def add_news (request):
     if not currentUser.is_superuser:
         return render(request,'AccessDenied.html')
     if request.method == "GET":
-        return render(request,'AddNEWSPage.html')
+        form= NewsImageForm()
+        return render(request,'AddNEWSPage.html',{'form':form})
     else:
         headline=request.POST.get("headline")
         content=request.POST.get("content")
         now = datetime.datetime.now()
-        news=News(headline=headline,content=content,author=currentUser,dateCreated=now,lastModified=now)
+        image = request.FILES.get('picture')
+        print(image)
+        news=News(headline=headline,content=content,author=currentUser,
+                  dateCreated=now,lastModified=now,picture=image)
         news.save()
         return render(request,'NEWSViewPage.html',{'news':news})
 
@@ -54,6 +59,9 @@ def update_news(request):
         news.headline= request.POST.get('headline')
         news.content = request.POST.get("content")
         news.lastModified = datetime.datetime.now()
+        image = request.FILES.get('picture')
+        if image:
+            news.picture= image
         news.save()
         return render(request, 'NEWSViewPage.html', {'news': news})
 

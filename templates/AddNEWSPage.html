@@ -116,8 +116,9 @@
         <h3>Add News</h3>
       </div>
       <div class="center-box">
-        <form action="/news/add/" method="POST">
+        <form action="/news/add/" method="post" enctype="multipart/form-data">
             {% csrf_token %}
+
           <div class="center-text">
               <input type="text"  name="headline" placeholder="Enter title" style="float: left">
           </div>
@@ -125,8 +126,8 @@
               <textarea name="content" placeholder="Enter text here" style="width: 100%; height: 200px;"></textarea>
           </div>
           <div class="center-text">
-              <button>Upload Image</button>
-              
+              <p><label for="id_picture">Image</label> <input type="file" name="picture" accept="image/*" id="id_picture"></p>
+
           </div>
           <!--
           <div class="drag-area">

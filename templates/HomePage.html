@@ -49,7 +49,6 @@
           background-size: 1000px 1000px;
           background-position: center;
           padding: 10%;
-          background-image: url('https://www.businessinsider.in/photo/82010466/capitol-riot-bullhorn-lady-appeared-in-a-video-to-wear-a-useless-mesh-mask-after-a-judge-ordered-her-to-wear-one-as-a-part-of-her-release.jpg?imgsize=407037');
         }
         .photo3{
           margin: auto;
@@ -123,7 +122,11 @@
         {% for news in page_obj_L %}
         <div class="grid-outer">
             <h3 class="grid-heading"> {{ news.headline }} </h3>
+            {% if not news.picture %}
             <div class="photo1"></div>
+            {% else %}
+            <div class="photo2" style="background-image: url('{{ news.picture.url }}');"></div>
+            {% endif %}
             <div style="padding: 20px;">
               <p>{{ news.content }}</p>
             <a href="/news/view?id={{ news.id }}" class="box">See more..</a>
@@ -162,7 +165,11 @@
            {% for news in page_obj_P %}
         <div class="grid-outer">
           <h3 class="grid-heading"> {{ news.headline }} </h3>
-          <div class="photo4"></div>
+          {% if not news.picture %}
+            <div class="photo1"></div>
+            {% else %}
+             <div class="photo2" style="background-image: url('{{ news.picture.url }}');"></div>
+            {% endif %}
           <div style="padding:20px;">
             <p>{{news.content }}</p>
             <a href="/news/view?id= {{ news.id }}" class="box"> See more..</a>

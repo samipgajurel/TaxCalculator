@@ -116,7 +116,7 @@
         <h3>Update News</h3>
       </div>
       <div class="center-box">
-        <form action="/news/update/?id={{ news.id }}" method="POST">
+        <form action="/news/update/?id={{ news.id }}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
           <div class="center-text">
               <input type="text"  name="headline" value="{{ news.headline }}" placeholder="Enter title" style="float: left">
@@ -126,9 +126,9 @@
                   {{ news.content }}
               </textarea>
           </div>
-          <div class="center-text">
-              <button>Upload Image</button>
-              
+         <div class="center-text">
+              <p><label for="id_picture">Image</label> <input type="file" name="picture" accept="image/*" id="id_picture"></p>
+
           </div>
           <!--
           <div class="drag-area">
