@@ -53,11 +53,11 @@
           background-color: rgb(240, 196, 48);
           width: 50px;
           border: solid black;
-          float: center; 
+          float: center;
         }
         body{
           background: url('https://www.sysfurniture.com/wp-content/uploads/2018/04/Reff-Private-office-1.jpg');
-          
+
         }
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -66,32 +66,9 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="float: right; position: fixed; top:0px; right: 0px;">
-        <div class="container-fluid">
-          
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/home">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/calculator">Tax Calculator</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/taxinfo">Tax Info</a>
-              </li>
-              <li class="nav-item" style="background-color:rgba(224, 103, 94, 0.815)">
-                <a class="nav-link" href="/accounts/signup">Sign Up</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-    </nav>
+{% include "navigationBar.html" %}
 
-    
+
     <br>
     <div class="icon">
       <i class="fa-solid fa-user-tie" style="font-size: 50px;"></i>
@@ -103,39 +80,24 @@
 
       <div class="box3">
       {% if next %}
-<form action="/accounts/login/?next={{next}}" method="post" >
+<form action="/accounts/profile/?next={{next}}" method="post" >
 {%else%}
-<form action="/accounts/login/" method="post" >
+<form action="/accounts/profile/" method="post" >
 {% endif %}
             {% csrf_token %}
           <div class="div-form">
                {{ form.non_field_errors }}
-            <label> Username </label>
+              {{ form }}
 
-            <br>
-                {{ form.username }}
-<!--            <input type="email" required placeholder="Enter your email">-->
-            <br>
-            <br>
-            <label> Password </label>
-            <br>
-                {{ form.password }}
-<!--            <input type="text" required placeholder="Enter your password">-->
-            <br>
-            <br>
-<!--            <input type="checkbox"> User-->
-<!--            <input type="checkbox"> Admin-->
-            <br>
-            <br>
             <div class="btn">
               <button type="submit" style="margin-bottom: 10px; border-radius: 20px; padding: 10px 20px 10px 20px;">
-                Login
+                Update
               </button>
             </div>
           </div>
       </form>
-      </div>
     </div>
-    
+    </div>
+
 </body>
 </html>

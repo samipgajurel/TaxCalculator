@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     ]
 LOGOUT_REDIRECT_URL = '/home'
+LOGIN_REDIRECT_URL = '/accounts/dashboard/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
